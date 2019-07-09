@@ -22,8 +22,8 @@ const Schema = mongoose.Schema({
     },
     role:{
         type: String,
-        enum: constants.ROOLES,
-        required: true
+        enum: constants.ROLES,
+        default: constants.ROLES[1]
     }
 
 });

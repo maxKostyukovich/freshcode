@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
 require('../models/user.model');
+const Constants = require('../constants');
 
-mongoose.connect('mongodb://localhost/my_database', {useNewUrlParser: true},(err)=>{
+mongoose.connect(Constants.DB_CON_STRING, {useNewUrlParser: true},(err)=>{
     if(err){
         process.exit(1);
     }else {
