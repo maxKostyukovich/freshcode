@@ -1,5 +1,6 @@
 const Access = require('../rules/role_rule');
 const User = require('../models/user.model');
+const NoPermissionError = require('../errorHandler/NoPermissionError');
 const mongoose = require('mongoose');
 
 function checkSelfAccess (selfRole,action){
@@ -16,8 +17,9 @@ module.exports.accessToReadUpdateDelete =  (action) => {
 
     if((req.headers._id === user._id.toString())?checkSelfAccess(req.headers.role,action):checkOtherAccess(req.headers.role,user.role,action)){
             next();
+
         } else {
-        next(new Error("Do not have permissions"));
+        next(new NoPermissionError());
     }
     }
  };
@@ -26,7 +28,7 @@ module.exports.accessToReadUpdateDelete =  (action) => {
          if (checkSelfAccess(req.headers.role,action)){
              next();
              } else {
-             next(new Error("Do not have permissions"));
+             next(new NoPermissionError());
          }
     }
  };

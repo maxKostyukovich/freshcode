@@ -1,4 +1,4 @@
-const PORT = 3005;
+const PORT = 3001;
 const ROLES = ["ADMIN","USER"];
 const GENDER = ["MALE","FEMALE"];
 const ACTION = {
